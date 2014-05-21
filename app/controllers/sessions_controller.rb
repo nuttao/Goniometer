@@ -43,7 +43,7 @@ class SessionsController < ApplicationController
     else
       if request.format.html?
         flash[:alert] = "Cannot login, please try again"
-        render action: 'new', is_error: true, message: 'Cannot login, please try again'
+        render action: 'new'
       elsif request.format.json?
         render json: {success: false, message: 'Cannot login, please try again'}
       end

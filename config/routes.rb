@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get 'profile/edit'
 
   get 'main/index'
+  get 'main/template'
 
   resources :measure_results
 
