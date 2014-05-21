@@ -1,0 +1,14 @@
+<%= form_tag("/sessions/new",{method:"POST"}) do |f| %>
+
+  <div class="field">
+    Username<br>
+    <%= text_field :user, :user_id %>
+  </div>
+  <div class="field">
+    Password<br>
+    <%= password_field :user, :password %>
+  </div>
+  <div class="actions">
+    <%= submit_tag %>
+  </div>
+<% end %>

@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Body part:</strong>
+  <%= @motion.body_part %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @motion.name %>
+</p>
+
+<%= link_to 'Edit', edit_motion_path(@motion) %> |
+<%= link_to 'Back', motions_path %>

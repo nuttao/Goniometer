@@ -1,0 +1,64 @@
+<div class="the-box no-border">
+    <div class="btn-toolbar top-table" role="toolbar">
+        <div class="btn-group">
+            <button type="button" class="btn btn-success"><i class="fa fa-plus"></i> Add new member</button>
+        </div>
+        <div class="btn-group pull-right">
+            <form role="form">
+                <div class="input-group">
+                  <input type="text" placeholder="Search your order..." class="form-control">
+                  <span class="input-group-btn">
+                    <button type="button" class="btn btn-success">Go!</button>
+                  </span>
+                </div><!-- /input-group -->
+            </form>
+        </div>
+    </div>
+    
+    <div class="table-responsive">
+        <table class="table table-th-block table-hover">
+            <thead>
+                <tr>
+                    <th style="width: 120px;"></th>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% @users.each do |user| %>
+                    <tr>
+                        <td>
+                            <%= link_to user_path(user), class: 'btn-group' do %> 
+                                <li class="fa fa-eye icon-rounded icon-xs icon-info"></li>
+                            <% end %>
+                            <%= link_to edit_user_path(user), class: 'btn-group' do %>
+                                <li class="fa fa-edit icon-rounded icon-xs icon-warning"></li>
+                            <% end %>
+                            <%= link_to user_path(user), class: 'btn-group', method: "delete" do %>
+                                <li class="fa fa-trash-o icon-rounded icon-xs icon-danger"></li>
+                            <% end %>
+                        </td>
+                        <td><%= user.username %></td>
+                        <td><%= user.email %></td>
+                        <td><%= user.role.name %></td>
+                    </tr>
+                <% end %>
+            </tbody>
+        </table>
+    </div><!-- /.table-responsive -->
+    
+    
+    <ul class="pagination">
+        <li class="disabled"><a href="#fakelink">&laquo;</a></li>
+        <li class="disabled"><a href="#fakelink">&lsaquo;</a></li>
+        <li class="active"><a href="#fakelink">1</a></li>
+        <li><a href="#fakelink">2</a></li>
+        <li><a href="#fakelink">3</a></li>
+        <li><a href="#fakelink">...</a></li>
+        <li><a href="#fakelink">15</a></li>
+        <li><a href="#fakelink">&rsaquo;</a></li>
+        <li><a href="#fakelink">&raquo;</a></li>
+    </ul>
+</div><!-- /.the-box -->
+<!-- End example member table -->

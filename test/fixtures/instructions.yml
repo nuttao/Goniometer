@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  motion_id: 
+  description: MyText
+  axis_mode: 1
+  order_no: 1
+
+two:
+  motion_id: 
+  description: MyText
+  axis_mode: 1
+  order_no: 1

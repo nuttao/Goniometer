@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @measure.user %>
+</p>
+
+<p>
+  <strong>Measure mode:</strong>
+  <%= @measure.measure_mode %>
+</p>
+
+<p>
+  <strong>Patient:</strong>
+  <%= @measure.patient %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @measure.description %>
+</p>
+
+<p>
+  <strong>Measured at:</strong>
+  <%= @measure.measured_at %>
+</p>
+
+<p>
+  <strong>Body part:</strong>
+  <%= @measure.body_part %>
+</p>
+
+<p>
+  <strong>Motion:</strong>
+  <%= @measure.motion %>
+</p>
+
+<%= link_to 'Edit', edit_measure_path(@measure) %> |
+<%= link_to 'Back', measures_path %>

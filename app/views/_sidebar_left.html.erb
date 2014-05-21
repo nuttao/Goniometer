@@ -1,0 +1,99 @@
+<ul class="sidebar-menu">
+    <% if @current_user.role_id == Role::GENERAL_ID %>
+        <li class="<%= controller_name == "measures" ? 'active selected' : '' %>">
+            <%= link_to measures_path do %>
+                <i class="fa fa-desktop icon-sidebar"></i>
+                <i class="fa fa-angle-right chevron-icon-sidebar"></i>
+                Data
+            <% end %>
+            <ul class="submenu <%= controller_name == "measures" && ["index", "new"].include?(action_name) ? 'visible' : '' %>">
+                <li class="<%= controller_name == "measures" && action_name == "index" ? 'active selected' : '' %>">
+                    <%= link_to "Lists", measures_path %>
+                </li>
+                <li class="<%= controller_name == "measures" && action_name == "new" ? 'active selected' : '' %>">
+                    <%= link_to "New", new_measure_path %>
+                </li>
+            </ul>
+        </li>
+        
+        <li class="<%= controller_name == "patients" ? 'active selected' : '' %>">
+            <%= link_to patients_path do %>
+                <i class="fa fa-desktop icon-sidebar"></i>
+                <i class="fa fa-angle-right chevron-icon-sidebar"></i>
+                Patients
+            <% end %>
+            <ul class="submenu <%= controller_name == "patients" && ["index", "new"].include?(action_name) ? 'visible' : '' %>">
+                <li class="<%= controller_name == "patients" && action_name == "index" ? 'active selected' : '' %>">
+                    <%= link_to "Lists", patients_path %>
+                </li>
+                <li class="<%= controller_name == "patients" && action_name == "new" ? 'active selected' : '' %>">
+                    <%= link_to "New", new_patient_path %>
+                </li>
+            </ul>
+        </li>
+        
+        <li class="<%= controller_name == "profile" ? 'active selected' : '' %>">
+            <%= link_to "/profile/show" do %>
+                <i class="fa fa-user icon-sidebar"></i>
+                Profile
+            <% end %>
+        </li>
+        
+    <% else %>
+        <li class="<%= controller_name == "motions" ? 'active selected' : '' %>">
+            <%= link_to motions_path do %>
+                <i class="fa fa-desktop icon-sidebar"></i>
+                <i class="fa fa-angle-right chevron-icon-sidebar"></i>
+                Motion & Instructions
+            <% end %>
+            <ul class="submenu <%= controller_name == "motions" && ["index", "new"].include?(action_name) ? 'visible' : '' %>">
+                <li class="<%= controller_name == "motions" && action_name == "index" ? 'active selected' : '' %>">
+                    <%= link_to "Lists", motions_path %>
+                </li>
+                <li class="<%= controller_name == "motions" && action_name == "new" ? 'active selected' : '' %>">
+                    <%= link_to "New", new_motion_path %>
+                </li>
+            </ul>
+        </li>
+        
+        <li class="<%= controller_name == "body_parts" ? 'active selected' : '' %>">
+            <%= link_to body_parts_path do %>
+                <i class="fa fa-male icon-sidebar"></i>
+                <i class="fa fa-angle-right chevron-icon-sidebar"></i>
+                Body Parts
+            <% end %>
+            <ul class="submenu <%= controller_name == "body_parts" && ["index", "new"].include?(action_name) ? 'visible' : '' %>">
+                <li class="<%= controller_name == "body_parts" && action_name == "index" ? 'active selected' : '' %>">
+                    <%= link_to "Lists", body_parts_path %>
+                </li>
+                <li class="<%= controller_name == "body_parts" && action_name == "new" ? 'active selected' : '' %>">
+                    <%= link_to "New", new_body_part_path %>
+                </li>
+            </ul>
+        </li>
+        
+        <li class="<%= controller_name == "users" ? 'active selected' : '' %>">
+            <%= link_to users_path do %>
+                <i class="fa fa-users icon-sidebar"></i>
+                <i class="fa fa-angle-right chevron-icon-sidebar"></i>
+                Users
+            <% end %>
+            <ul class="submenu <%= controller_name == "users" && ["index", "new"].include?(action_name) ? 'visible' : '' %>">
+                <li class="<%= controller_name == "users" && action_name == "index" ? 'active selected' : '' %>">
+                    <%= link_to "Lists", users_path %>
+                </li>
+                <li class="<%= controller_name == "users" && action_name == "new" ? 'active selected' : '' %>">
+                    <%= link_to "New", new_user_path %>
+                </li>
+            </ul>
+        </li>
+    <% end %>
+    
+    <li>
+        <%= link_to "/sessions/#{session[:app_session_id]}", method: :delete do %>
+            <i class="fa fa-power-off icon-sidebar"></i>
+            Logout 
+        <% end %>
+    </li>
+    
+</ul>
