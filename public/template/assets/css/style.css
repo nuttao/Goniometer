@@ -204,7 +204,7 @@ ul.nav-user{
 	list-style: none;
 	position: absolute;
 	top: 0;
-	right: 50px;
+	right: 0px;
 }
 ul.nav-user.full{
 	right: 0;

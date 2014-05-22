@@ -1,24 +1,65 @@
-<p id="notice"><%= notice %></p>
+<div class="row">
+  <div class="col-sm-12">
+    <%= form_for(@user, html: {class: "form-horizontal bootstrap-validator-form"}) do |f| %>
+      <div class="panel panel-info panel-square">
+        
+        <div class="panel-heading">
+          <h3 class="panel-title">Show User</h3>
+        </div>
+        
+        <div class="panel-body">
+          <div class="form-group has-feedback">
+            <label class="col-lg-3 control-label">Username</label>
+            <div class="col-lg-5">
+              <%= text_field :user, :username, class: "form-control", disabled: true %>
+            </div>
+          </div>
+          <div class="form-group has-feedback">
+            <label class="col-lg-3 control-label">Email</label>
+            <div class="col-lg-5">
+              <%= text_field :user, :email, class: "form-control", disabled: true %>
+            </div>
+          </div>      
+          <div class="form-group has-feedback">
+            <label class="col-lg-3 control-label">Role</label>
+            <div class="col-lg-5">
+              <%= text_field :user, :role, class: "form-control", disabled: true %>
+            </div>
+          </div>       
+        </div>
 
-<p>
-  <strong>Username:</strong>
-  <%= @user.username %>
-</p>
+        <div class="panel-footer">
+          <div class="row">
+            <div class="col-sm-offset-3 col-sm-9">
+              <div class="btn-toolbar " role="toolbar">
+                <div class="btn-group">
+                  <%= link_to edit_user_path(@user), class: "btn btn-warning" do %>
+                    <i class="fa fa-pencil-square-o"></i> Edit
+                  <% end %>
+                </div>
+                <div class="btn-group">
+                  <%= link_to user_path(@user), class: "btn btn-danger", method: "delete" do %>
+                    <i class="fa fa-ban"></i> Delete
+                  <% end %>
+                </div>
+                <div class="btn-group">
+                  <%= link_to users_path, class: "btn btn-default" do %>
+                    <i class="fa  fa-arrow-left"></i> Back
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
 
-<p>
-  <strong>Crypted password:</strong>
-  <%= @user.crypted_password %>
-</p>
 
-<p>
-  <strong>Email:</strong>
-  <%= @user.email %>
-</p>
 
-<p>
-  <strong>Role:</strong>
-  <%= @user.role %>
-</p>
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+
+
+
+

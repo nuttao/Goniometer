@@ -31,14 +31,6 @@
                 </li>
             </ul>
         </li>
-        
-        <li class="<%= controller_name == "profile" ? 'active selected' : '' %>">
-            <%= link_to "/profile/show" do %>
-                <i class="fa fa-user icon-sidebar"></i>
-                Profile
-            <% end %>
-        </li>
-        
     <% else %>
         <li class="<%= controller_name == "motions" ? 'active selected' : '' %>">
             <%= link_to motions_path do %>

@@ -103,12 +103,11 @@
                                 Hi, <strong>Paris Hawker</strong>
                               </a>
                               <ul class="dropdown-menu square primary margin-list-rounded with-triangle">
-                                <li><a href="#fakelink">Account setting</a></li>
-                                <li><a href="#fakelink">Payment setting</a></li>
-                                <li><a href="#fakelink">Change password</a></li>
-                                <li><a href="#fakelink">My public profile</a></li>
-                                <li class="divider"></li>
-                                <li><a href="lock-screen.html">Lock screen</a></li>
+                                <li>
+                                    <%= link_to "Profile", "/profile/show" %>
+                                </li>
+                                
+                                <li class="divider"></li>                                
                                 <li>
                                     <%= link_to "/sessions/#{session[:app_session_id]}", method: :delete do %>
                                         Log out 
@@ -434,7 +433,7 @@
                 <div class="container-fluid">
                     
                     <!-- Begin page heading -->
-                    <h1 class="page-heading"><%= controller_name.humanize %> <small><%= action_name %></small></h1>
+                    <!--h1 class="page-heading"><%#= controller_name.humanize %> <small><%#= action_name %></small></h1--><br/>
                     <!-- End page heading -->
                     <!-- Begin breadcrumb -->
                     <ol class="breadcrumb default square rsaquo sm">
@@ -497,7 +496,7 @@
         <script src="/template/assets/plugins/backstretch/jquery.backstretch.min.js"></script>
  
         <!-- PLUGINS -->
-        <script src="/template/assets/plugins/skycons/skycons.js"></script>
+        <!--script src="/template/assets/plugins/skycons/skycons.js"></script>
         <script src="/template/assets/plugins/prettify/prettify.js"></script>
         <script src="/template/assets/plugins/magnific-popup/jquery.magnific-popup.min.js"></script>
         <script src="/template/assets/plugins/owl-carousel/owl.carousel.min.js"></script>
@@ -506,44 +505,44 @@
         <script src="/template/assets/plugins/datepicker/bootstrap-datepicker.js"></script>
         <script src="/template/assets/plugins/timepicker/bootstrap-timepicker.js"></script>
         <script src="/template/assets/plugins/mask/jquery.mask.min.js"></script>
-        <script src="/template/assets/plugins/validator/bootstrapValidator.min.js"></script>
+        <script src="/template/assets/plugins/validator/bootstrapValidator.min.js"></script-->
         <script src="/template/assets/plugins/datatable/js/jquery.dataTables.min.js"></script>
         <script src="/template/assets/plugins/datatable/js/bootstrap.datatable.js"></script>
-        <script src="/template/assets/plugins/summernote/summernote.min.js"></script>
+        <!--script src="/template/assets/plugins/summernote/summernote.min.js"></script>
         <script src="/template/assets/plugins/markdown/markdown.js"></script>
         <script src="/template/assets/plugins/markdown/to-markdown.js"></script>
         <script src="/template/assets/plugins/markdown/bootstrap-markdown.js"></script>
-        <script src="/template/assets/plugins/slider/bootstrap-slider.js"></script>
+        <script src="/template/assets/plugins/slider/bootstrap-slider.js"></script-->
         
         <!-- EASY PIE CHART JS -->
-        <script src="/template/assets/plugins/easypie-chart/easypiechart.min.js"></script>
-        <script src="/template/assets/plugins/easypie-chart/jquery.easypiechart.min.js"></script>
+        <!--script src="/template/assets/plugins/easypie-chart/easypiechart.min.js"></script>
+        <script src="/template/assets/plugins/easypie-chart/jquery.easypiechart.min.js"></script-->
         
         <!-- KNOB JS -->
         <!--[if IE]>
         <script type="text/javascript" src="/template/assets/plugins/jquery-knob/excanvas.js"></script>
         <![endif]-->
-        <script src="/template/assets/plugins/jquery-knob/jquery.knob.js"></script>
-        <script src="/template/assets/plugins/jquery-knob/knob.js"></script>
+        <!--script src="/template/assets/plugins/jquery-knob/jquery.knob.js"></script>
+        <script src="/template/assets/plugins/jquery-knob/knob.js"></script-->
 
         <!-- FLOT CHART JS -->
-        <script src="/template/assets/plugins/flot-chart/jquery.flot.js"></script>
+        <!--script src="/template/assets/plugins/flot-chart/jquery.flot.js"></script>
         <script src="/template/assets/plugins/flot-chart/jquery.flot.tooltip.js"></script>
         <script src="/template/assets/plugins/flot-chart/jquery.flot.resize.js"></script>
         <script src="/template/assets/plugins/flot-chart/jquery.flot.selection.js"></script>
         <script src="/template/assets/plugins/flot-chart/jquery.flot.stack.js"></script>
-        <script src="/template/assets/plugins/flot-chart/jquery.flot.time.js"></script>
+        <script src="/template/assets/plugins/flot-chart/jquery.flot.time.js"></script-->
 
         <!-- MORRIS JS -->
-        <script src="/template/assets/plugins/morris-chart/raphael.min.js"></script>
-        <script src="/template/assets/plugins/morris-chart/morris.min.js"></script>
+        <!--script src="/template/assets/plugins/morris-chart/raphael.min.js"></script>
+        <script src="/template/assets/plugins/morris-chart/morris.min.js"></script-->
         
         <!-- C3 JS -->
-        <script src="/template/assets/plugins/c3-chart/d3.v3.min.js" charset="utf-8"></script>
-        <script src="/template/assets/plugins/c3-chart/c3.min.js"></script>
+        <!--script src="/template/assets/plugins/c3-chart/d3.v3.min.js" charset="utf-8"></script>
+        <script src="/template/assets/plugins/c3-chart/c3.min.js"></script-->
         
         <!-- MAIN APPS JS -->
-        <script src="/template/assets/js/apps.js"></script>
+        <!--script src="/template/assets/js/apps.js"></script-->
         
     </body>
 </html>
