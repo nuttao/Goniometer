@@ -82,7 +82,7 @@
     <% end %>
     
     <li>
-        <%= link_to "/sessions/#{session[:app_session_id]}", method: :delete do %>
+        <%= link_to "javascript:;", method: :delete, id: :logout do %>
             <i class="fa fa-power-off icon-sidebar"></i>
             Logout 
         <% end %>

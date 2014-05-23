@@ -1,31 +1,49 @@
-<h1>Listing patients</h1>
+<div class="row">
+  <div class="col-sm-12">
+      <div class="panel panel-info panel-block-color panel-square">
+        <div class="panel-heading">
+          <h3 class="panel-title">Patients</h3>
+          <div class="right-content">
+            <div class="btn-group">
+              <%= link_to new_patient_path, class: "btn btn-warning" do %>
+                <i class="fa fa-plus"></i> Add new patient
+              <% end %>
+            </div>
+          </div>
+        </div>
+        <div class="panel-body">
+          <div class="box">
+            <div class="table-responsive">
+              <table class="table table-striped table-hover" id="main-datatable">
+                <thead class="the-box dark full">
+                  <tr>
+                    <th>Name</th>
+                    <th>Gender</th>
+                    <th>Age</th>
+                    <th>User</th>                 
+                  </tr>
+                </thead>
+                <tbody>
+                  <% (@patients).each do |patient| %>
+                    <tr>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Gender</th>
-      <th>Age</th>
-      <th>User</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @patients.each do |patient| %>
-      <tr>
-        <td><%= patient.name %></td>
-        <td><%= patient.gender %></td>
-        <td><%= patient.age %></td>
-        <td><%= patient.user %></td>
-        <td><%= link_to 'Show', patient %></td>
-        <td><%= link_to 'Edit', edit_patient_path(patient) %></td>
-        <td><%= link_to 'Destroy', patient, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Patient', new_patient_path %>
+                      <td><%= link_to patient.name, patient_path(patient) %></td>
+                      <td><%= patient.gender %></td>
+                      <td><%= patient.age %></td>
+                      <td><%= patient.user %></td>
+                      <td><%=  %></td>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
+            </div><!-- /.table-responsive -->
+          </div>
+        </div><!-- /.panel-body -->        
+      </div><!-- /.panel panel-info -->
+  </div><!-- /.col-sm-4 -->
+</div>
+<script>
+  $(document).ready(function(){
+      $('#main-datatable').dataTable();
+  });
+</script>

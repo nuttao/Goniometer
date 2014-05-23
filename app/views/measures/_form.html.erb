@@ -1,45 +1,7 @@
-<%= form_for(@measure) do |f| %>
-  <% if @measure.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@measure.errors.count, "error") %> prohibited this measure from being saved:</h2>
-
-      <ul>
-      <% @measure.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :user_id %><br>
-    <%= f.text_field :user_id %>
-  </div>
-  <div class="field">
-    <%= f.label :measure_mode %><br>
-    <%= f.number_field :measure_mode %>
-  </div>
-  <div class="field">
-    <%= f.label :patient_id %><br>
-    <%= f.text_field :patient_id %>
-  </div>
-  <div class="field">
-    <%= f.label :description %><br>
-    <%= f.text_area :description %>
-  </div>
-  <div class="field">
-    <%= f.label :measured_at %><br>
-    <%= f.datetime_select :measured_at %>
-  </div>
-  <div class="field">
-    <%= f.label :body_part_id %><br>
-    <%= f.text_field :body_part_id %>
-  </div>
-  <div class="field">
-    <%= f.label :motion_id %><br>
-    <%= f.text_field :motion_id %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+<%= input_select_required :measure, :user_id, User.all.collect {|p| [p.username, p.id]},{}, class: "form-control" %>
+<%= input_select_required :measure, :patient_id, Patient.all.collect {|p| [p.name, p.id]},{}, class: "form-control" %>
+<%= input_select_required :measure, :body_part_id, BodyPart.all.collect {|p| [p.name, p.id]},{}, class: "form-control" %>
+<%= input_select_required :measure, :motion_id, Motion.all.collect {|p| [p.name, p.id]},{}, class: "form-control" %>
+<%= input_text_field_required :measure, :measure_mode, class: "form-control" %>
+<%= input_text_area :measure, :description, class: "form-control" %>
+<%= input_datetime_select :measure, :measured_at, order: [:day, :month, :year], class: "form-control" %>

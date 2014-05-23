@@ -35,9 +35,30 @@ module FormHelper
 	end
   
   	def input_text_area_required(object, method, options = {})
+  		options[:required] = true
     	input_text_area(object, method, options)
   	end
-  
+
+  	def input_number_field(object, method, options = {})
+  		begin_html, end_html = wrapping_html(object, method, options)
+    	(begin_html + number_field( object, method, options) + end_html).html_safe
+    end
+
+    def input_number_field_required(object, method, options = {})
+    	options[:required] = true
+  		input_number_field(object, method, options)
+    end
+  	
+  	def input_datetime_select(object, method, options = {}) 
+  		begin_html, end_html = wrapping_html(object, method, options)
+    	(begin_html + datetime_select(object, method, options) + end_html).html_safe
+  	end
+
+  	def input_datetime_select_required(object, method, options = {})
+  		options[:required] = true
+    	input_number_field(object, method, options)
+  	end
+
   	private
 
   	def wrapping_html( object, method, options)

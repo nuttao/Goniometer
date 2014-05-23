@@ -1,6 +1,9 @@
 class Patient < ActiveRecord::Base
   belongs_to :user
 
+  validates :user_id, presence: true
+  validates :name, presence: true, uniqueness: true
+
   def to_json
     {
       id: self.id,
@@ -11,4 +14,7 @@ class Patient < ActiveRecord::Base
     }
   end
   
+  def to_s
+    name
+  end
 end

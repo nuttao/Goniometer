@@ -4,6 +4,13 @@ class Measure < ActiveRecord::Base
   belongs_to :body_part
   belongs_to :motion
 
+  validates :user_id, presence: true
+  validates :patient_id, presence: true
+  validates :body_part_id, presence: true
+  validates :motion_id, presence: true
+  validates :measure_mode, presence: true
+  validates :measured_at, presence: true
+
   def to_json
   	{
 			id: self.id,
