@@ -1,78 +1,9 @@
-<div class="row">
-  <div class="col-sm-12">
-    <%= form_for(@user, html: {class: "form-horizontal bootstrap-validator-form", id: 'form-summited'}) do |f| %>
-      <div class="panel panel-info panel-square">
-        <div class="panel-heading">
-          <h3 class="panel-title"><%= action_name.humanize %> User</h3>
-        </div>
-        <div class="panel-body">
-          <div class="form-group has-feedback">
-            <label class="col-lg-3 control-label">Username</label>
-            <div class="col-lg-5">
-              <%= text_field :user, :username, class: "form-control" %>
-            </div>
-          </div>
-          <div class="form-group has-feedback">
-            <label class="col-lg-3 control-label">Password</label>
-            <div class="col-lg-5">
-              <%= password_field :user, :password, class: "form-control" %>
-            </div>
-          </div>
-          <div class="form-group has-feedback">
-            <label class="col-lg-3 control-label">Password confirmation</label>
-            <div class="col-lg-5">
-              <%= password_field :user, :password_confirmation, class: "form-control" %>
-            </div>
-          </div>
-          <div class="form-group has-feedback">
-            <label class="col-lg-3 control-label">Email</label>
-            <div class="col-lg-5">
-              <%= text_field :user, :email, class: "form-control" %>
-            </div>
-          </div>          
-        </div>
-        <div class="panel-footer">
-          <div class="row">
-            <div class="col-sm-offset-3 col-sm-9">
-              <div class="btn-toolbar " role="toolbar">
-                <div class="btn-group">
-                  <%= button_tag :button, class: "btn btn-primary", "data-toggle" => "modal", "data-target" => "#PrimaryModalColor" do %>
-                  <%#= button_tag :button, class: "btn btn-primary" do %>
-                    <i class="fa fa-check"></i> Save
-                  <% end %>
-                </div>
-                <div class="btn-group">
-                  <%= link_to users_path, class: "btn btn-danger" do %>
-                    <i class="fa fa-times"></i> Cancel
-                  <% end %>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    <% end %>
-  </div>
-</div>
+<%= input_text_field_required :user, :username, class: "form-control" %>
+<%= input_password_field_required :user, :password, class: "form-control" %>
+<%= input_password_field_required :user, :password_confirmation, class: "form-control" %>
+<%= input_text_field :user, :email, class: "form-control" %>
+<%= input_select :user, :role_id, Role.all.collect {|p| [p.name, p.id]}, {}, class: "form-control" %>
 
-<!-- Modal -->
-<div class="modal fade" id="PrimaryModalColor" tabindex="-1" role="dialog" aria-labelledby="PrimaryModalColorLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content modal-no-shadow modal-no-border bg-primary">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="PrimaryModalColorLabel">Confirmation</h4>
-      </div>
-      <div class="modal-body">
-        Are you sure ? 
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-        <button type="button" class="btn btn-primary">OK</button>
-      </div><!-- /.modal-footer -->
-    </div><!-- /.modal-content .modal-no-shadow .modal-no-border .the-box .primary .full -->
-  </div><!-- /.modal-dialog -->
-</div><!-- /#PrimaryModalColor -->
 
 
 

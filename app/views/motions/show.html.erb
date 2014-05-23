@@ -1,14 +1,80 @@
-<p id="notice"><%= notice %></p>
+<div class="row">
+  <div class="col-sm-12">
+    <%= form_for(@motion, html: {class: "form-horizontal bootstrap-validator-form"}) do |f| %>
+      <div class="panel panel-info panel-square">
+        
+        <div class="panel-heading">
+          <h3 class="panel-title">Show Motion & Instructions</h3>
+        </div>
+        
+        <div class="panel-body">
+        	<%= input_text_field :motion, :body_part, class: "form-control", disabled: true %>
+        	<%= input_text_field :motion, :name, class: "form-control", disabled: true %>
+          <%#= input_text_field :motion, :img, class: "form-control", disabled: true %>
+        </div>
 
-<p>
-  <strong>Body part:</strong>
-  <%= @motion.body_part %>
-</p>
+        <div class="panel-footer">
+          <div class="row">
+            <div class="col-sm-offset-3 col-sm-9">
+              <div class="btn-toolbar " role="toolbar">
+                <div class="btn-group">
+                  <%= link_to edit_motion_path(@motion), class: "btn btn-warning" do %>
+                    <i class="fa fa-pencil-square-o"></i> Edit
+                  <% end %>
+                </div>
+                <div class="btn-group">
+                  <%= link_to "javascript: ;", class: "btn btn-danger", method: "delete", id: "delete" do %>
+                    <i class="fa fa-ban"></i> Delete
+                  <% end %>
+                </div>
+                <div class="btn-group">
+                  <%= link_to motions_path(), class: "btn btn-default" do %>
+                    <i class="fa  fa-arrow-left"></i> Back
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+<script type="text/javascript">
+  $(document).on("click", "#delete", function(e) { 
+    e.preventDefault();       
+    bootbox.dialog({
+      message: "Are you sure ?",
+      title: "Confirmation",
+      buttons: {
+        cancel: {
+          label: "Cancel",
+          className: "btn-default",
+          callback: function() {
+            // Todo
+          }
+        },
+        ok: {
+          label: "OK",
+          className: "btn-danger",
+          callback: function() {
+            // Todo
+            
+            window.location = '<%= motions_path %>';
 
-<p>
-  <strong>Name:</strong>
-  <%= @motion.name %>
-</p>
+          }
+        },
+      }
+    }).find("div.modal-content").addClass("modal-no-shadow modal-no-border bg-danger");;
+  });
+</script>
 
-<%= link_to 'Edit', edit_motion_path(@motion) %> |
-<%= link_to 'Back', motions_path %>
+
+
+
+
+
+
+
+
+

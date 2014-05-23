@@ -1,6 +1,9 @@
 class Motion < ActiveRecord::Base
   belongs_to :body_part
 
+  validates :body_part_id, presence: true
+  validates :name, presence: true, uniqueness: {scop: :body_part_id}
+
   def to_json
     {
       id: self.id,

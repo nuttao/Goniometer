@@ -3,6 +3,13 @@
       <div class="panel panel-info panel-block-color panel-square">
         <div class="panel-heading">
           <h3 class="panel-title">Users</h3>
+          <div class="right-content">
+            <div class="btn-group">
+              <%= link_to new_user_path, class: "btn btn-warning" do %>
+                <i class="fa fa-plus"></i> Add new user
+              <% end %>
+            </div>
+          </div>
         </div>
         <div class="panel-body">
           <div class="box">
@@ -16,11 +23,11 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <% (@users * 20).each do |user| %>
+                  <% (@users).each do |user| %>
                     <tr>
                       <td><%= link_to user.username, user_path(user) %></td>
                       <td><%= user.email %></td>
-                      <td><%= user.role.name %></td>
+                      <td><%= user.role %></td>
                     </tr>
                   <% end %>
                 </tbody>
@@ -34,10 +41,5 @@
 <script>
   $(document).ready(function(){
       $('#main-datatable').dataTable();
-
-      $("div#main-datatable_length").html('<div id="main-btn-link"class="col-sm-6" style="padding-left:0px;"></div><div id="main-page-length" class="col-sm-6"></div>');
-      $("div#main-btn-link").html('<div id="main-btn-link-sub" class="btn-group"></div>');
-      $("div#main-btn-link-sub").html('<%= link_to new_user_path, class: "btn btn-success" do %><i class="fa fa-plus"></i> Add new user<% end %>');
-      /*$("div#main-page-length").html('<label><select aria-controls="main-datatable" size="1" name="main-datatable_length"><option selected="selected" value="10">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select> records per page</label>');*/
   });
 </script>

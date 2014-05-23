@@ -1,5 +1,59 @@
-<h1>New body_part</h1>
+<div class="row">
+  <div class="col-sm-12">
+    <%= form_for(@body_part, html: {class: "form-horizontal bootstrap-validator-form", id: 'main-form'}) do |f| %>
+      <div class="panel panel-info panel-square">
+        <div class="panel-heading">
+          <h3 class="panel-title">New Body part</h3>
+        </div>
+        <div class="panel-body">
 
-<%= render 'form' %>
+			<%= render partial: "form" %>
 
-<%= link_to 'Back', body_parts_path %>
+		</div>
+        <div class="panel-footer">
+          <div class="row">
+            <div class="col-sm-offset-3 col-sm-9">
+              <div class="btn-toolbar " role="toolbar">
+                <div class="btn-group">
+                  <%= link_to "javascript:;", class: "btn btn-primary", id: 'submit' do %>
+                    <i class="fa fa-check"></i> Save
+                  <% end %>
+                </div>
+                <div class="btn-group">
+                  <%= link_to body_parts_path, class: "btn btn-default" do %>
+                    <i class="fa fa-times"></i> Cancel
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+<script type="text/javascript">
+  $(document).on("click", "#submit", function(e) {
+    bootbox.dialog({
+      message: "Are you sure ?",
+      title: "Confirmation",
+      buttons: {
+        cancel: {
+          label: "Cancel",
+          className: "btn-default",
+          callback: function() {
+            
+          }
+        },
+        ok: {
+          label: "OK",
+          className: "btn-primary",
+          callback: function() {
+            $('#main-form').submit();
+          }
+        },
+      }
+    }).find("div.modal-content").addClass("modal-no-shadow modal-no-border bg-primary");;
+  });
+</script>
+

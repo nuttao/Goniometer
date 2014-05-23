@@ -1,27 +1,46 @@
-<h1>Listing motions</h1>
+<div class="row">
+  <div class="col-sm-12">
+      <div class="panel panel-info panel-block-color panel-square">
+        <div class="panel-heading">
+          <h3 class="panel-title">Motion & Instructionss</h3>
+          <div class="right-content">
+            <div class="btn-group">
+              <%= link_to new_motion_path, class: "btn btn-warning" do %>
+                <i class="fa fa-plus"></i> Add new motion
+              <% end %>
+            </div>
+          </div>
+        </div>
+        <div class="panel-body">
+          <div class="box">
+            <div class="table-responsive">
+              <table class="table table-striped table-hover" id="main-datatable">
+                <thead class="the-box dark full">
+                  <tr>
+                    <th>Name</th>
+                    <th>Body part</th>
+                    <th>Image</th>                 
+                  </tr>
+                </thead>
+                <tbody>
+                  <% (@motions).each do |motion| %>
+                    <tr>
 
-<table>
-  <thead>
-    <tr>
-      <th>Body part</th>
-      <th>Name</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @motions.each do |motion| %>
-      <tr>
-        <td><%= motion.body_part %></td>
-        <td><%= motion.name %></td>
-        <td><%= link_to 'Show', motion %></td>
-        <td><%= link_to 'Edit', edit_motion_path(motion) %></td>
-        <td><%= link_to 'Destroy', motion, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Motion', new_motion_path %>
+                      <td><%= link_to motion.name, motion_path(motion) %></td>
+                      <td><%= motion.body_part %></td>
+                      <td><%=  %></td>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
+            </div><!-- /.table-responsive -->
+          </div>
+        </div><!-- /.panel-body -->        
+      </div><!-- /.panel panel-info -->
+  </div><!-- /.col-sm-4 -->
+</div>
+<script>
+  $(document).ready(function(){
+      $('#main-datatable').dataTable();
+  });
+</script>

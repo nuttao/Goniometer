@@ -109,7 +109,7 @@
                                 
                                 <li class="divider"></li>                                
                                 <li>
-                                    <%= link_to "/sessions/#{session[:app_session_id]}", method: :delete do %>
+                                    <%= link_to "javascript:;", method: :delete, id: "logout" do %>
                                         Log out 
                                     <% end %>
                                 </li>
@@ -490,6 +490,7 @@
         <!-- <script src="/template/assets/js/jquery.min.js"></script> -->
         
         <script src="/template/assets/js/bootstrap.min.js"></script>
+        <script src="/template/assets/js/bootbox.min.js"></script>
         <script src="/template/assets/plugins/retina/retina.min.js"></script>
         <script src="/template/assets/plugins/nicescroll/jquery.nicescroll.js"></script>
         <script src="/template/assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
@@ -543,6 +544,33 @@
         
         <!-- MAIN APPS JS -->
         <!--script src="/template/assets/js/apps.js"></script-->
+        <script type="text/javascript">
+          $(document).on("click", "#logout", function(e) { 
+            e.preventDefault();       
+            bootbox.dialog({
+              message: "Are you sure ?",
+              title: "Confirmation",
+              buttons: {
+                cancel: {
+                  label: "Cancel",
+                  className: "btn-default",
+                  callback: function() {
+                    // Todo
+                  }
+                },
+                ok: {
+                  label: "OK",
+                  className: "btn-warning",
+                  callback: function() {
+                    // Todo
+                    window.location = '/sessions/new';
+
+                  }
+                },
+              }
+            }).find("div.modal-content").addClass("modal-no-shadow modal-no-border bg-warning");;
+          });
+        </script>
         
     </body>
 </html>
