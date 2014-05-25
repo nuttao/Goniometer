@@ -69,6 +69,6 @@ class BodyPartsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def body_part_params
-      params.require(:body_part).permit(:name)
+      params.require(:body_part).permit(:name, :image)
     end
 end

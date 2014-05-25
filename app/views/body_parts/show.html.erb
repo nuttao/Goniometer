@@ -8,8 +8,18 @@
         </div>
         
         <div class="panel-body">
+          <div class="form-group has-feedback">
+            <label class="col-sm-3 control-label">Image</label>
+            <div class="col-md-2">
+              <div class="magnific-popup-wrap">
+                <%= link_to @body_part.image.url(:large), class: "thumbnail square zooming" do %>
+                  <%= image_tag @body_part.image.url %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+
           <%= input_text_field :body_part, :name, class: "form-control", disabled: true %>
-          <%#= input_text_field :body_part, :img, class: "form-control", disabled: true %>
         </div>
 
         <div class="panel-footer">

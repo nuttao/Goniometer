@@ -10,6 +10,16 @@ class User < ActiveRecord::Base
   validates :password, :length => {:in => 4..40}, :if => :password_required?
   validates :password, :password_confirmation, :presence => true, :if => :password_required?
   validates :password, :confirmation => true, :if => :password_required?
+  
+
+  has_attached_file :image,
+                    :styles => {:large => '500x500>', :medium => '300x300>', :thumb => "150x150", :icon => '32x32#'},
+                    :default_style => :thumb,
+                    :url => "/files/:class/:attachment/:id/:style/:basename.:extension",
+                    :path => ":rails_root/public/files/:class/:attachment/:id/:style/:basename.:extension", 
+                    :default_url => "/files/missing/:class/:style.png"
+  
+  validates_attachment :image, content_type: { content_type: /\Aimage\/.*\Z/ }
 
   def to_json
     {

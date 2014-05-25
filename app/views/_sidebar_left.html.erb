@@ -2,15 +2,15 @@
     <% if @current_user.role_id == Role::GENERAL_ID %>
         <li class="<%= controller_name == "measures" ? 'active selected' : '' %>">
             <%= link_to measures_path do %>
-                <i class="fa fa-desktop icon-sidebar"></i>
+                <i class="fa fa-database icon-sidebar"></i>
                 <i class="fa fa-angle-right chevron-icon-sidebar"></i>
                 Data
             <% end %>
-            <ul class="submenu <%= controller_name == "measures" && ["index", "new"].include?(action_name) ? 'visible' : '' %>">
-                <li class="<%= controller_name == "measures" && action_name == "index" ? 'active selected' : '' %>">
-                    <%= link_to "Lists", measures_path %>
+            <ul class="submenu <%= controller_name == "measures" && ["index", "new", "edit", "create", "update", "show"].include?(action_name) ? 'visible' : '' %>">
+                <li class="<%= controller_name == "measures" && ["index", "show", "edit", "update"].include?(action_name) ? 'active selected' : '' %>">
+                    <%= link_to "List", measures_path %>
                 </li>
-                <li class="<%= controller_name == "measures" && action_name == "new" ? 'active selected' : '' %>">
+                <li class="<%= controller_name == "measures" && ["new", "create"].include?(action_name) ? 'active selected' : '' %>">
                     <%= link_to "New", new_measure_path %>
                 </li>
             </ul>
@@ -18,15 +18,15 @@
         
         <li class="<%= controller_name == "patients" ? 'active selected' : '' %>">
             <%= link_to patients_path do %>
-                <i class="fa fa-desktop icon-sidebar"></i>
+                <i class="fa fa-male icon-sidebar"></i>
                 <i class="fa fa-angle-right chevron-icon-sidebar"></i>
                 Patients
             <% end %>
-            <ul class="submenu <%= controller_name == "patients" && ["index", "new"].include?(action_name) ? 'visible' : '' %>">
-                <li class="<%= controller_name == "patients" && action_name == "index" ? 'active selected' : '' %>">
-                    <%= link_to "Lists", patients_path %>
+            <ul class="submenu <%= controller_name == "patients" && ["index", "new", "edit", "create", "update", "show"].include?(action_name) ? 'visible' : '' %>">
+                <li class="<%= controller_name == "patients" && ["index", "show", "edit", "update"].include?(action_name) ? 'active selected' : '' %>">
+                    <%= link_to "List", patients_path %>
                 </li>
-                <li class="<%= controller_name == "patients" && action_name == "new" ? 'active selected' : '' %>">
+                <li class="<%= controller_name == "patients" && ["new", "create"].include?(action_name) ? 'active selected' : '' %>">
                     <%= link_to "New", new_patient_path %>
                 </li>
             </ul>
@@ -38,11 +38,11 @@
                 <i class="fa fa-angle-right chevron-icon-sidebar"></i>
                 Motion & Instructions
             <% end %>
-            <ul class="submenu <%= controller_name == "motions" && ["index", "new"].include?(action_name) ? 'visible' : '' %>">
-                <li class="<%= controller_name == "motions" && action_name == "index" ? 'active selected' : '' %>">
-                    <%= link_to "Lists", motions_path %>
+            <ul class="submenu <%= controller_name == "motions" && ["index", "new", "edit", "create", "update", "show"].include?(action_name) ? 'visible' : '' %>">
+                <li class="<%= controller_name == "motions" && ["index", "show", "edit", "update"].include?(action_name) ? 'active selected' : '' %>">
+                    <%= link_to "List", motions_path %>
                 </li>
-                <li class="<%= controller_name == "motions" && action_name == "new" ? 'active selected' : '' %>">
+                <li class="<%= controller_name == "motions" && ["new", "create"].include?(action_name) ? 'active selected' : '' %>">
                     <%= link_to "New", new_motion_path %>
                 </li>
             </ul>
@@ -54,11 +54,11 @@
                 <i class="fa fa-angle-right chevron-icon-sidebar"></i>
                 Body Parts
             <% end %>
-            <ul class="submenu <%= controller_name == "body_parts" && ["index", "new"].include?(action_name) ? 'visible' : '' %>">
-                <li class="<%= controller_name == "body_parts" && action_name == "index" ? 'active selected' : '' %>">
-                    <%= link_to "Lists", body_parts_path %>
+            <ul class="submenu <%= controller_name == "body_parts" && ["index", "new", "edit", "create", "update", "show"].include?(action_name) ? 'visible' : '' %>">
+                <li class="<%= controller_name == "body_parts" && ["index", "show", "edit", "update"].include?(action_name) ? 'active selected' : '' %>">
+                    <%= link_to "List", body_parts_path %>
                 </li>
-                <li class="<%= controller_name == "body_parts" && action_name == "new" ? 'active selected' : '' %>">
+                <li class="<%= controller_name == "body_parts" && ["new", "create"].include?(action_name) ? 'active selected' : '' %>">
                     <%= link_to "New", new_body_part_path %>
                 </li>
             </ul>
@@ -70,22 +70,22 @@
                 <i class="fa fa-angle-right chevron-icon-sidebar"></i>
                 Users
             <% end %>
-            <ul class="submenu <%= controller_name == "users" && ["index", "new"].include?(action_name) ? 'visible' : '' %>">
-                <li class="<%= controller_name == "users" && action_name == "index" ? 'active selected' : '' %>">
-                    <%= link_to "Lists", users_path %>
+            <ul class="submenu <%= controller_name == "users" && ["index", "new", "edit", "create", "update", "show"].include?(action_name) ? 'visible' : '' %>">
+                <li class="<%= controller_name == "users" && ["index", "show", "edit", "update"].include?(action_name) ? 'active selected' : '' %>">
+                    <%= link_to "List", users_path %>
                 </li>
-                <li class="<%= controller_name == "users" && action_name == "new" ? 'active selected' : '' %>">
+                <li class="<%= controller_name == "users" && ["new", "create"].include?(action_name) ? 'active selected' : '' %>">
                     <%= link_to "New", new_user_path %>
                 </li>
             </ul>
         </li>
     <% end %>
     
-    <li>
-        <%= link_to "javascript:;", method: :delete, id: :logout do %>
+    <!--li>
+        <%#= link_to "javascript:;", method: :delete, id: :logout do %>
             <i class="fa fa-power-off icon-sidebar"></i>
             Logout 
-        <% end %>
-    </li>
+        <%# end %>
+    </li-->
     
 </ul>

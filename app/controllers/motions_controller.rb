@@ -69,6 +69,6 @@ class MotionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def motion_params
-      params.require(:motion).permit(:body_part_id, :name)
+      params.require(:motion).permit(:body_part_id, :name, :image)
     end
 end

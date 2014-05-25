@@ -8,6 +8,16 @@
         </div>
         
         <div class="panel-body">
+          <div class="form-group has-feedback">
+            <label class="col-sm-3 control-label">Image</label>
+            <div class="col-md-2">
+              <div class="magnific-popup-wrap">
+                <%= link_to @motion.image.url(:large), class: "thumbnail square zooming" do %>
+                  <%= image_tag @motion.image.url %>
+                <% end %>
+              </div>
+            </div>
+          </div>
         	<%= input_text_field :motion, :body_part, class: "form-control", disabled: true %>
         	<%= input_text_field :motion, :name, class: "form-control", disabled: true %>
           <%#= input_text_field :motion, :img, class: "form-control", disabled: true %>

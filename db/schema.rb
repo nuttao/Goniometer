@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20140520084642) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "body_parts", force: true do |t|
     t.string   "name"
     t.string   "image_file_name"
@@ -37,7 +40,7 @@ ActiveRecord::Schema.define(version: 20140520084642) do
     t.datetime "updated_at"
   end
 
-  add_index "instructions", ["motion_id"], name: "index_instructions_on_motion_id"
+  add_index "instructions", ["motion_id"], name: "index_instructions_on_motion_id", using: :btree
 
   create_table "measure_results", force: true do |t|
     t.integer  "measure_id"
@@ -48,7 +51,7 @@ ActiveRecord::Schema.define(version: 20140520084642) do
     t.datetime "updated_at"
   end
 
-  add_index "measure_results", ["measure_id"], name: "index_measure_results_on_measure_id"
+  add_index "measure_results", ["measure_id"], name: "index_measure_results_on_measure_id", using: :btree
 
   create_table "measures", force: true do |t|
     t.integer  "user_id"
@@ -63,10 +66,10 @@ ActiveRecord::Schema.define(version: 20140520084642) do
     t.datetime "updated_at"
   end
 
-  add_index "measures", ["body_part_id"], name: "index_measures_on_body_part_id"
-  add_index "measures", ["motion_id"], name: "index_measures_on_motion_id"
-  add_index "measures", ["patient_id"], name: "index_measures_on_patient_id"
-  add_index "measures", ["user_id"], name: "index_measures_on_user_id"
+  add_index "measures", ["body_part_id"], name: "index_measures_on_body_part_id", using: :btree
+  add_index "measures", ["motion_id"], name: "index_measures_on_motion_id", using: :btree
+  add_index "measures", ["patient_id"], name: "index_measures_on_patient_id", using: :btree
+  add_index "measures", ["user_id"], name: "index_measures_on_user_id", using: :btree
 
   create_table "motions", force: true do |t|
     t.integer  "body_part_id"
@@ -79,7 +82,7 @@ ActiveRecord::Schema.define(version: 20140520084642) do
     t.datetime "updated_at"
   end
 
-  add_index "motions", ["body_part_id"], name: "index_motions_on_body_part_id"
+  add_index "motions", ["body_part_id"], name: "index_motions_on_body_part_id", using: :btree
 
   create_table "patients", force: true do |t|
     t.string   "name"
@@ -90,7 +93,7 @@ ActiveRecord::Schema.define(version: 20140520084642) do
     t.datetime "updated_at"
   end
 
-  add_index "patients", ["user_id"], name: "index_patients_on_user_id"
+  add_index "patients", ["user_id"], name: "index_patients_on_user_id", using: :btree
 
   create_table "roles", force: true do |t|
     t.string   "name"
@@ -106,17 +109,21 @@ ActiveRecord::Schema.define(version: 20140520084642) do
     t.datetime "updated_at"
   end
 
-  add_index "sessions", ["user_id"], name: "index_sessions_on_user_id"
+  add_index "sessions", ["user_id"], name: "index_sessions_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "username"
     t.string   "crypted_password"
     t.string   "email"
     t.integer  "role_id"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "users", ["role_id"], name: "index_users_on_role_id"
+  add_index "users", ["role_id"], name: "index_users_on_role_id", using: :btree
 
 end

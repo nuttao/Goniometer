@@ -204,7 +204,7 @@ ul.nav-user{
 	list-style: none;
 	position: absolute;
 	top: 0;
-	right: 0px;
+	right: 50px;
 }
 ul.nav-user.full{
 	right: 0;
@@ -6843,51 +6843,3 @@ You can remove this style if you want c:
 }
 .weatherseparator:after {clear: both;}
 
-
-
-
-
-/**
-=====================================================
-FOR DEMO PURPOSE
-=====================================================
-**/
-.box-demo{
-	position: fixed;
-	top: 70px;
-	right: -200px;
-	background: #242A34;
-	z-index: 999;
-	width: 200px;
-	-webkit-transition:All 0.3s ease;
-	-moz-transition:All 0.3s ease;
-	-o-transition:All 0.3s ease;
-}
-.box-demo.tugel{
-	right: 0;
-}
-.box-demo .inner-panel{
-	position: relative;
-	padding: 10px;
-}
-.inner-panel .cog-panel{
-	position: absolute;
-	width: 40px;
-	height: 40px;
-	background: #242A34;
-	left: -39px;
-	text-align: center;
-	cursor: pointer;
-	padding: 7px 0;
-	font-size: 18px;
-}
-.xs-tiles{
-	cursor: pointer;
-	margin: 10px 0;
-	border-radius: 10px;
-	overflow: hidden;
-}
-.xs-tiles .half-tiles{
-	height: 12px;
-}
-.bg-white {background: #F6F8F9;}

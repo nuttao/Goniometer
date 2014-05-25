@@ -1,6 +1,20 @@
 <div class="row">
   <div class="col-sm-12">
-    <%= form_for(@body_part, html: {class: "form-horizontal bootstrap-validator-form", id: 'main-form'}) do |f| %>
+    <%= form_for(@body_part, html: {class: "form-horizontal bootstrap-validator-form", id: 'main-form', multipart: true}) do |f| %>
+
+
+<% if @body_part.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@body_part.errors.count, "error") %> prohibited this instruction from being saved:</h2>
+
+      <ul>
+      <% @body_part.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+    
       <div class="panel panel-info panel-square">
         <div class="panel-heading">
           <h3 class="panel-title">Edit Body part</h3>

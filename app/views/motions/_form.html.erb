@@ -1,3 +1,4 @@
+<%= input_image_file_field_required :motion, :image, readonly: true, class: "form-control" %>
 <%= input_select_required :motion, :body_part_id, BodyPart.all.collect {|p| [p.name, p.id]},{}, class: "form-control" %>
 <%= input_text_field_required :motion, :name, class: "form-control" %>
 

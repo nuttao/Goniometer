@@ -4,6 +4,7 @@ class Patient < ActiveRecord::Base
   validates :user_id, presence: true
   validates :name, presence: true, uniqueness: true
 
+
   def to_json
     {
       id: self.id,

@@ -1,15 +1,15 @@
 <div class="row">
   <div class="col-sm-12">
-    <%= form_for(@body_part, html: {class: "form-horizontal bootstrap-validator-form", id: 'main-form'}) do |f| %>
+    <%= form_for(@body_part, html: {class: "form-horizontal bootstrap-validator-form", id: 'main-form', multipart: true}) do |f| %>
       <div class="panel panel-info panel-square">
         <div class="panel-heading">
           <h3 class="panel-title">New Body part</h3>
         </div>
         <div class="panel-body">
 
-			<%= render partial: "form" %>
+          <%= render partial: "form" %>
 
-		</div>
+		    </div>
         <div class="panel-footer">
           <div class="row">
             <div class="col-sm-offset-3 col-sm-9">

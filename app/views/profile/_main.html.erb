@@ -1,0 +1,95 @@
+<div class="row">
+  <div class="col-sm-12">
+  	<div class="panel with-nav-tabs panel-<%= @current_user.role_id == Role::GENERAL_ID ? "success" : "info" %> panel-square panel-no-border">
+		  <div class="panel-heading">
+  			<ul class="nav nav-tabs">
+  				<li id="profile-detail" class="<%= panel && panel == "profile-detail" ? 'active' : '' %>">
+            <%= link_to({controller: "profile", action: "detail", id: @current_user.id}, remote: true) do %>
+              <i class="fa fa-user"></i> My Profile
+            <% end %>
+          </li>
+  				<li id="profile-form" class="<%= panel && panel == "profile-form" ? 'active' : '' %>">
+            <%= link_to({controller: "profile", action: "form", id: @current_user.id}, remote: true) do %>
+              <i class="fa fa-pencil-square-o"></i> Edit My Profile
+            <% end %>
+          </li>
+  			</ul>
+  		</div>
+			<div class="collapse in" id="panel-collapse-1">
+				<div class="panel-body">
+					<div class="tab-content" id="main-content">
+            <% if panel && panel == "profile-detail" %>
+              <%= render partial: "detail"%>
+            <% else %>
+              <%= render partial: "form"%>
+            <% end %>
+					</div><!-- /.tab-content -->
+				</div><!-- /.panel-body -->
+			</div><!-- /.collapse in -->
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+  $(document).on("click", "#submit", function(e) {
+    bootbox.dialog({
+      message: "Are you sure ?",
+      title: "Confirmation",
+      buttons: {
+        cancel: {
+          label: "Cancel",
+          className: "btn-default",
+          callback: function() {
+            
+          }
+        },
+        ok: {
+          label: "OK",
+          className: "btn-primary",
+          callback: function() {
+            $('#main-form').submit();
+            // $.ajax({
+            //  url: "update",
+            //  type: "GET",
+            //  data: $('#main-form').serialize() + '&' + $.param({id: '<%= @profile.id %>'}),
+            //  dataType: "html",
+            //  success: function(data) {
+            //      jQuery("#main-content").html(data);
+            //  }
+            // });
+          }
+        },
+      }
+    }).find("div.modal-content").addClass("modal-no-shadow modal-no-border bg-primary");;
+  });
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

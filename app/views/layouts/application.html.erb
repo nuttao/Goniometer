@@ -10,9 +10,12 @@
         <%= stylesheet_link_tag    'application', media: 'all' %>
         <%= javascript_include_tag 'application' %>
         <%= csrf_meta_tags %> 
+ 
 
         <!-- BOOTSTRAP CSS (REQUIRED ALL PAGE)-->
-        <link href="/template/assets/css/bootstrap.min.css" rel="stylesheet">
+        <link href="/template/assets/css/bootstrap-custom.min.css" rel="stylesheet">
+
+        <link href="/template/assets/css/jasny-bootstrap.min.css" rel="stylesheet">
         
         <!-- PLUGINS CSS -->
         <link href="/template/assets/plugins/weather-icon/css/weather-icons.min.css" rel="stylesheet">
@@ -35,7 +38,7 @@
         
         <!-- MAIN CSS (REQUIRED ALL PAGE)-->
         <link href="/template/assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-        <link href="/template/assets/css/style.css" rel="stylesheet">
+        <link href="/template/assets/css/style-custom.css" rel="stylesheet">
         <link href="/template/assets/css/style-responsive.css" rel="stylesheet">
  
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -61,17 +64,19 @@
                 <div class="top-navbar-inner">
                     
                     <!-- Begin Logo brand -->
-                    <div class="logo-brand info-color">
-                        <% if @current_user.role_id == Role::GENERAL_ID %>
+                    <% if @current_user.role_id == Role::GENERAL_ID %>
+                        <div class="logo-brand success-color">
                             <%= link_to measures_path do %>
                                 <img src="/template/assets/img/sentir-logo-primary.png" alt="Sentir logo">
                             <% end %>
-                        <% else %>
+                        </div><!-- /.logo-brand -->
+                    <% else %>
+                        <div class="logo-brand info-color">
                             <%= link_to motions_path do %>
                                 <img src="/template/assets/img/sentir-logo-primary.png" alt="Sentir logo">
                             <% end %>
-                        <% end %>
-                    </div><!-- /.logo-brand -->
+                        </div><!-- /.logo-brand -->
+                    <% end %>
                     <!-- End Logo brand -->
                     
                     <div class="top-nav-content">
@@ -99,12 +104,16 @@
                         <ul class="nav-user navbar-right">
                             <li class="dropdown">
                               <a href="#fakelink" class="dropdown-toggle" data-toggle="dropdown">
-                                <img src="/template/assets/img/avatar/avatar.jpg" class="avatar img-circle" alt="Avatar">
-                                Hi, <strong>Paris Hawker</strong>
+                                <% if @current_user.image.present? %>
+                                    <%= image_tag @current_user.image.url(:icon), class: "avatar img-circle" %>
+                                <% else %>
+                                    <img src="/template/assets/img/avatar/avatar.jpg" class="avatar img-circle" alt="Avatar">
+                                <% end %>
+                                Hi, <strong><%= @current_user.username.humanize %></strong>
                               </a>
                               <ul class="dropdown-menu square primary margin-list-rounded with-triangle">
                                 <li>
-                                    <%= link_to "Profile", "/profile/show" %>
+                                    <%= link_to "Profile", controller: "profile", action: "show", id: @current_user.id %>
                                 </li>
                                 
                                 <li class="divider"></li>                                
@@ -421,7 +430,7 @@
             
             
             <!-- BEGIN SIDEBAR LEFT -->
-            <div class="sidebar-left sidebar-nicescroller">
+            <div class="sidebar-left sidebar-nicescroller <%= @current_user.role_id == Role::GENERAL_ID ? "light-color" : "" %>">
                 <%= render partial: "/sidebar_left" %>
             </div><!-- /.sidebar-left -->
             <!-- END SIDEBAR LEFT -->
@@ -431,33 +440,38 @@
             <!-- BEGIN PAGE CONTENT -->
             <div class="page-content">
                 <div class="container-fluid">
-                    
+                
                     <!-- Begin page heading -->
                     <!--h1 class="page-heading"><%#= controller_name.humanize %> <small><%#= action_name %></small></h1--><br/>
                     <!-- End page heading -->
                     <!-- Begin breadcrumb -->
-                    <ol class="breadcrumb default square rsaquo sm">
-                        <% if @current_user.role_id == Role::GENERAL_ID %>
+                    <% if controller_name != "profile" %>
+                        <ol class="breadcrumb default square rsaquo sm">
+                            <% if @current_user.role_id == Role::GENERAL_ID %>
+                                <li>
+                                    <%= link_to measures_path do %>
+                                        <i class="fa fa-home"></i>
+                                    <% end %>
+                                </li>
+                            <% else %>
+                                <li>
+                                    <%= link_to motions_path do %>
+                                        <i class="fa fa-home"></i>
+                                    <% end %>
+                                </li>
+                            <% end %>
                             <li>
-                                <%= link_to measures_path do %>
-                                    <i class="fa fa-home"></i>
-                                <% end %>
+                                <%= link_to controller_name.to_s.humanize, eval("#{controller_name}_path") %>
                             </li>
-                        <% else %>
-                            <li>
-                                <%= link_to motions_path do %>
-                                    <i class="fa fa-home"></i>
-                                <% end %>
-                            </li>
-                        <% end %>
-                        <li><%= link_to controller_name.to_s.humanize, eval("#{controller_name}_path") %></li>
-                        <li class="active"><%= action_name %></li>
-                    </ol>
+                            <li class="active"><%= action_name %></li>
+                        </ol>
+                    <% end %>
                     <!-- End breadcrumb -->
                     
                     <%= yield %>
-                    
+
                 </div><!-- /.container-fluid -->
+                
                 
                 
                 <!-- BEGIN FOOTER -->
@@ -466,12 +480,11 @@
                     Power by <a href="#">Rise+ Software House</a>.
                 </footer>
                 <!-- END FOOTER -->
-                
-                
-            </div><!-- /.page-content -->
-        </div><!-- /.wrapper -->
-        <!-- END PAGE CONTENT -->
+            </div><!-- /.wrapper -->
+            <!-- END PAGE CONTENT -->
         
+        
+    
         
         
         
@@ -487,17 +500,17 @@
         ===========================================================
         -->
         <!-- MAIN JAVASRCIPT (REQUIRED ALL PAGE)-->
-        <!-- <script src="/template/assets/js/jquery.min.js"></script> -->
-        
-        <script src="/template/assets/js/bootstrap.min.js"></script>
+        <script src="/template/assets/js/jquery.min.js"></script>
         <script src="/template/assets/js/bootbox.min.js"></script>
+        <script src="/template/assets/js/bootstrap.min.js"></script>
+        <script src="/template/assets/js/jasny-bootstrap.min.js"></script>
         <script src="/template/assets/plugins/retina/retina.min.js"></script>
         <script src="/template/assets/plugins/nicescroll/jquery.nicescroll.js"></script>
         <script src="/template/assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
         <script src="/template/assets/plugins/backstretch/jquery.backstretch.min.js"></script>
  
         <!-- PLUGINS -->
-        <!--script src="/template/assets/plugins/skycons/skycons.js"></script>
+        <script src="/template/assets/plugins/skycons/skycons.js"></script>
         <script src="/template/assets/plugins/prettify/prettify.js"></script>
         <script src="/template/assets/plugins/magnific-popup/jquery.magnific-popup.min.js"></script>
         <script src="/template/assets/plugins/owl-carousel/owl.carousel.min.js"></script>
@@ -506,44 +519,45 @@
         <script src="/template/assets/plugins/datepicker/bootstrap-datepicker.js"></script>
         <script src="/template/assets/plugins/timepicker/bootstrap-timepicker.js"></script>
         <script src="/template/assets/plugins/mask/jquery.mask.min.js"></script>
-        <script src="/template/assets/plugins/validator/bootstrapValidator.min.js"></script-->
+        <script src="/template/assets/plugins/validator/bootstrapValidator.min.js"></script>
         <script src="/template/assets/plugins/datatable/js/jquery.dataTables.min.js"></script>
         <script src="/template/assets/plugins/datatable/js/bootstrap.datatable.js"></script>
-        <!--script src="/template/assets/plugins/summernote/summernote.min.js"></script>
+        <script src="/template/assets/plugins/summernote/summernote.min.js"></script>
         <script src="/template/assets/plugins/markdown/markdown.js"></script>
         <script src="/template/assets/plugins/markdown/to-markdown.js"></script>
         <script src="/template/assets/plugins/markdown/bootstrap-markdown.js"></script>
-        <script src="/template/assets/plugins/slider/bootstrap-slider.js"></script-->
+        <script src="/template/assets/plugins/slider/bootstrap-slider.js"></script>
         
         <!-- EASY PIE CHART JS -->
-        <!--script src="/template/assets/plugins/easypie-chart/easypiechart.min.js"></script>
-        <script src="/template/assets/plugins/easypie-chart/jquery.easypiechart.min.js"></script-->
+        <script src="/template/assets/plugins/easypie-chart/easypiechart.min.js"></script>
+        <script src="/template/assets/plugins/easypie-chart/jquery.easypiechart.min.js"></script>
         
         <!-- KNOB JS -->
         <!--[if IE]>
         <script type="text/javascript" src="/template/assets/plugins/jquery-knob/excanvas.js"></script>
         <![endif]-->
-        <!--script src="/template/assets/plugins/jquery-knob/jquery.knob.js"></script>
-        <script src="/template/assets/plugins/jquery-knob/knob.js"></script-->
+        <script src="/template/assets/plugins/jquery-knob/jquery.knob.js"></script>
+        <script src="/template/assets/plugins/jquery-knob/knob.js"></script>
 
         <!-- FLOT CHART JS -->
-        <!--script src="/template/assets/plugins/flot-chart/jquery.flot.js"></script>
+        <script src="/template/assets/plugins/flot-chart/jquery.flot.js"></script>
         <script src="/template/assets/plugins/flot-chart/jquery.flot.tooltip.js"></script>
         <script src="/template/assets/plugins/flot-chart/jquery.flot.resize.js"></script>
         <script src="/template/assets/plugins/flot-chart/jquery.flot.selection.js"></script>
         <script src="/template/assets/plugins/flot-chart/jquery.flot.stack.js"></script>
-        <script src="/template/assets/plugins/flot-chart/jquery.flot.time.js"></script-->
+        <script src="/template/assets/plugins/flot-chart/jquery.flot.time.js"></script>
 
         <!-- MORRIS JS -->
-        <!--script src="/template/assets/plugins/morris-chart/raphael.min.js"></script>
-        <script src="/template/assets/plugins/morris-chart/morris.min.js"></script-->
+        <script src="/template/assets/plugins/morris-chart/raphael.min.js"></script>
+        <script src="/template/assets/plugins/morris-chart/morris.min.js"></script>
         
         <!-- C3 JS -->
-        <!--script src="/template/assets/plugins/c3-chart/d3.v3.min.js" charset="utf-8"></script>
-        <script src="/template/assets/plugins/c3-chart/c3.min.js"></script-->
+        <script src="/template/assets/plugins/c3-chart/d3.v3.min.js" charset="utf-8"></script>
+        <script src="/template/assets/plugins/c3-chart/c3.min.js"></script>
         
         <!-- MAIN APPS JS -->
-        <!--script src="/template/assets/js/apps.js"></script-->
+        <script src="/template/assets/js/apps.js"></script>
+
         <script type="text/javascript">
           $(document).on("click", "#logout", function(e) { 
             e.preventDefault();       

@@ -3,6 +3,12 @@ Rails.application.routes.draw do
 
   get 'profile/edit'
 
+  get 'profile/form'
+
+  get 'profile/detail'
+
+  post 'profile/update'
+
   get 'main/index'
   get 'main/template'
 

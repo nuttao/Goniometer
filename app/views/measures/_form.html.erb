@@ -4,4 +4,6 @@
 <%= input_select_required :measure, :motion_id, Motion.all.collect {|p| [p.name, p.id]},{}, class: "form-control" %>
 <%= input_text_field_required :measure, :measure_mode, class: "form-control" %>
 <%= input_text_area :measure, :description, class: "form-control" %>
-<%= input_datetime_select :measure, :measured_at, order: [:day, :month, :year], class: "form-control" %>
+<%= input_text_field :measure, :value, class: "form-control" %>
+<%#= input_datetime_select :measure, :measured_at, order: [:day, :month, :year], class: "form-control" %>
+<%= input_text_field :measure, :measured_at, class: "form-control datepicker", placeholder: "dd-mm-yy", "data-date-format" => "dd-mm-yy" %>

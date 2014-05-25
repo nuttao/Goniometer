@@ -17,18 +17,17 @@
               <table class="table table-striped table-hover" id="main-datatable">
                 <thead class="the-box dark full">
                   <tr>
+                    <th>Image</th> 
                     <th>Name</th>
-                    <th>Body part</th>
-                    <th>Image</th>                 
+                    <th>Body part</th> 
                   </tr>
                 </thead>
                 <tbody>
                   <% (@motions).each do |motion| %>
                     <tr>
-
-                      <td><%= link_to motion.name, motion_path(motion) %></td>
+                      <td><%= link_to image_tag(motion.image.url), motion_path(motion), class: "thumbnail square col-sm-3" %></td>  
+                      <td><%= motion.name %></td>
                       <td><%= motion.body_part %></td>
-                      <td><%=  %></td>
                     </tr>
                   <% end %>
                 </tbody>

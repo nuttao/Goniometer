@@ -1,0 +1,19 @@
+<form role="form" class="form-horizontal">
+	<div class="form-group has-feedback">
+    	<label class="col-sm-3 control-label">Image</label>
+    	<div class="col-md-2">
+    		<% if @profile.image.present? %>
+		      	<div class="magnific-popup-wrap">	      		
+		        	<%= link_to @profile.image.url(:large), class: "thumbnail square zooming" do %>
+		          		<%= image_tag @profile.image.url %>
+		        	<% end %>
+		      	</div>
+		     <% else %>
+		     	<img alt="Avatar" class="avatar" src="/template/assets/img/avatar/avatar.jpg", style="width: 100px; height: 100px;">
+		     <% end %>
+	    </div>
+	</div>
+	<%= input_text_field :profile, :username, class: "form-control", disabled: true %>
+  	<%= input_text_field :profile, :email, class: "form-control", disabled: true %>
+    <%= input_text_field :profile, :role, class: "form-control", disabled: true %>
+</form>
